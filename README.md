@@ -6,4 +6,4 @@ To do:
 - [ ] Import maps using opencv -> qimage
 - [ ] Implement RRT* 
  
- [GUI](/images/screenshot.png)
+ ![](/Images/gui.png "GUI")
