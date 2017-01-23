@@ -36,7 +36,8 @@ Node* RRT::getRandomNode()
 {
     Node* ret;
     Vector2f point(drand48() * WORLD_WIDTH, drand48() * WORLD_HEIGHT);
-    if (point.x() >= 0 && point.x() <= WORLD_WIDTH && point.y() >= 0 && point.y() <= WORLD_HEIGHT) {
+    if (point.x() >= 0 && point.x() <= WORLD_WIDTH && point.y() >= 0 && point.y() <= WORLD_HEIGHT)
+    {
         ret = new Node;
         ret->position = point;
         return ret;
@@ -65,7 +66,8 @@ Node* RRT::nearest(Vector2f point)
 {
     float minDist = 1e9;
     Node *closest = NULL;
-    for(int i = 0; i < (int)nodes.size(); i++) {
+    for(int i = 0; i < (int)nodes.size(); i++)
+    {
         float dist = distance(point, nodes[i]->position);
         if (dist < minDist) {
             minDist = dist;
@@ -131,7 +133,8 @@ void RRT::setMaxIterations(int iter)
  */
 void RRT::deleteNodes(Node *root)
 {
-    for(int i = 0; i < (int)root->children.size(); i++) {
+    for(int i = 0; i < (int)root->children.size(); i++)
+    {
         deleteNodes(root->children[i]);
     }
     delete root;

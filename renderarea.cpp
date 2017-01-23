@@ -86,8 +86,10 @@ void RenderArea::drawNodes(QPainter &painter)
     painter.setPen(Qt::cyan);
     painter.setBrush(QBrush(Qt::cyan));
     Vector2f pos;
-    for(int i = 0; i < (int)rrt->nodes.size(); i++) {
-        for(int j = 0; j < (int)rrt->nodes[i]->children.size(); j++) {
+    for(int i = 0; i < (int)rrt->nodes.size(); i++)
+    {
+        for(int j = 0; j < (int)rrt->nodes[i]->children.size(); j++)
+        {
             pos = rrt->nodes[i]->children[j]->position;
             painter.drawEllipse(pos.x()-1.5, pos.y()-1.5, 3, 3);
         }
@@ -98,7 +100,8 @@ void RenderArea::drawNodes(QPainter &painter)
     painter.setBrush(QBrush(Qt::red));
 
     // if a path exists, draw it.
-    for(int i = 0; i < (int)rrt->path.size() - 1; i++) {
+    for(int i = 0; i < (int)rrt->path.size() - 1; i++)
+    {
         QPointF p1(rrt->path[i]->position.x(), rrt->path[i]->position.y());
         QPointF p2(rrt->path[i+1]->position.x(), rrt->path[i+1]->position.y());
         painter.drawLine(p1, p2);
@@ -119,7 +122,8 @@ void RenderArea::paintEvent(QPaintEvent *)
 
 void RenderArea::mousePressEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton) {
+    if (event->button() == Qt::LeftButton)
+    {
         lastMouseClickedPoint = event->pos();
         scribbling = true;
     }
@@ -132,7 +136,8 @@ void RenderArea::mouseMoveEvent(QMouseEvent *event)
 
 void RenderArea::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton && scribbling) {
+    if (event->button() == Qt::LeftButton && scribbling)
+    {
         QPoint curPoint = event->pos();
         rrt->obstacles->addObstacle(Vector2f(lastMouseClickedPoint.x(), lastMouseClickedPoint.y()), Vector2f(curPoint.x(), curPoint.y()));
         update();

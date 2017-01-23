@@ -16,7 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 void MainWindow::on_startButton_clicked()
 {
-    if (simulated) {
+    if (simulated)
+    {
         ui->statusBox->setText(tr("Please reset!"));
         renderArea->update();
         return;
@@ -30,26 +31,31 @@ void MainWindow::on_startButton_clicked()
     assert(rrt->max_iter > 0);
 
     // RRT Algorithm
-    for(int i = 0; i < renderArea->rrt->max_iter; i++) {
+    for(int i = 0; i < renderArea->rrt->max_iter; i++)
+    {
         Node *q = rrt->getRandomNode();
         if (q) {
             Node *qNearest = rrt->nearest(q->position);
-            if (rrt->distance(q->position, qNearest->position) > rrt->step_size) {
+            if (rrt->distance(q->position, qNearest->position) > rrt->step_size)
+            {
                 Vector2f newConfig = rrt->newConfig(q, qNearest);
-                if (!rrt->obstacles->isSegmentInObstacle(newConfig, qNearest->position)) {
+                if (!rrt->obstacles->isSegmentInObstacle(newConfig, qNearest->position))
+                {
                     Node *qNew = new Node;
                     qNew->position = newConfig;
                     rrt->add(qNearest, qNew);
                 }
             }
         }
-        if (rrt->reached()) {
+        if (rrt->reached())
+        {
             ui->statusBox->setText(tr("Reached Destination!"));
             break;
         }
     }
     Node *q;
-    if (rrt->reached()) {
+    if (rrt->reached())
+    {
         q = rrt->lastNode;
     }
     else
@@ -59,7 +65,8 @@ void MainWindow::on_startButton_clicked()
         ui->statusBox->setText(tr("Exceeded max iterations!"));
     }
     // generate shortest path to destination.
-    while (q != NULL) {
+    while (q != NULL)
+    {
         rrt->path.push_back(q);
         q = q->parent;
     }
